@@ -99,3 +99,6 @@ const router = new VueRouter({
     this.users = data.body;
     })
   }
+* vue.js 不支持 IE8 及其以下版本，学习前请保证你的浏览器兼容 ECMAScript 5
+* v-bind:id="vid" :class="vclass" :title="vtitle"   <h2>{{name.toLowerCase()}}</h2>
+* v-on:submit.prevent="onSubmit"  v-bind:id="rawId | formatId"    {{ name | myfilters }}  :href="url"  @click="doSomething"
