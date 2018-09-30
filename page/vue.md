@@ -102,3 +102,104 @@ const router = new VueRouter({
 * vue.js 不支持 IE8 及其以下版本，学习前请保证你的浏览器兼容 ECMAScript 5
 * v-bind:id="vid" :class="vclass" :title="vtitle"   <h2>{{name.toLowerCase()}}</h2>
 * v-on:submit.prevent="onSubmit"  v-bind:id="rawId | formatId"    {{ name | myfilters }}  :href="url"  @click="doSomething"
+* 缓存是计算属性的一大特点，使用计算属性时，每次获取的值是基于依赖的缓存值，也就是说，当数据源未发生变动时，获取的值将一直是缓存值
+* watch: {
+        firstName: function (curVal, oldVal) {
+            this.fullName = curVal + ' ' + this.lastName
+        }}
+   当监视的数据是一个数组或者对象时，curVal 和 oldVal 是相等的，因为这两个形参指向的是同一个数据对象
+* v-bind:class="{current:isCurrent}"
+* v-bind:class="comClass"
+    computed: {
+            comClass: function () {
+                return {
+                    'color': this.isColor
+                }
+            }
+        }
+* v-bind:class="[currentClass, colorClass]"
+    data:{
+            currentClass: 'current',
+            colorClass: 'color'
+        }
+    v-bind:class="[{current:isCurrent}, colorClass]"
+* Vue.component('my-component', {
+    template: '<p class="first">Hello</p>'
+})
+<my-component class="color"></my-component>
+* v-bind:style="styleObj"
+    data:{
+            styleObj:{
+                color: 'red',
+                fontSize: '14px'
+            }
+        }
+    v-bind:style="{color: 'red', fontSize: '14px'}"
+* <h2 v-bind:style="comObj">明灯小站</h2>
+    computed: {
+            comObj: function () {
+                return {
+                    color: this.color,
+                    fontSize: this.fontSize,
+                }
+            },
+        }
+* <h2 v-bind:style="arrStyle">明灯小站</h2>
+    data: {
+        arrStyle: [
+            {color:'red'}, 
+            {fontSize: '14px'}
+        ]        
+    }
+* <h2 v-bind:style="[colorObj, fontObj]">明灯小站</h2>
+    data: {
+        colorObj:{color: 'red'},
+        fontObj: {fontSize: '14px'}
+    }
+* <p v-if="type == 'iphone'">iPhone</p>
+    <p v-else-if="type == 'xiaomi'">小米</p>
+    <p v-else-if="type == 'huawei'">华为</p>
+    <p v-else>没有相关数据</p>
+*     <template v-if="showme">
+        <p>我是谁？</p>
+        <p>我在哪？</p>
+        <p>我要干什么？</p>	
+    </template>
+* <li v-for="value in object">{{value}}</li>
+    <li v-for="(value, key, index) in object">{{value}}</li>  value为对象的值，key为键，index为索引
+    <li v-for="(item, index) in items">
+*     <template v-for="item in items">
+    <div>
+        <h2>{{item.title}}</h2>
+        <p>{{item.content}}</p>
+    </div>
+    </template>
+* Vue.component(tagName, options)   <tagName></tagName>
+* <script>
+var Child = {
+    template: '<h2>明灯小站</h2>'
+}
+// 创建根实例
+new Vue({
+    el: "#app",
+    components: {
+        'mingtern': Child
+    }    
+})
+</script>
+* v-text直接输出字符串时需要用单引号包含，否则将报错
+    <p v-text="'现在是北京时间'+hour+'时'+minute+'分'+second+'秒'"></p>
+* v-on:click="say('hello', $event)"
+* <a href="http:://www.mingtern.com" v-on:click.prevent="say('hello')">{{message}}</a>
+* .lazy	取代 input 监听 change 事件
+* .number	输入字符串转为数字
+* .trim	输入首尾空格过滤
+* <span v-pre>{{ ok ? 'YES' : 'NO' }}：</span>
+* <div id="app" v-cloak>
+    <h2>{{title}}</h2>
+    <p>{{content}}</p>
+</div>
+[v-cloak] {
+    display: none;
+}
+* <h2 v-once>{{title}}</h2>
