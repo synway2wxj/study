@@ -15,6 +15,9 @@
 		picContentType.add("image/bmp");
 * @RequestMapping(value = "/file/upload", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
 * @RequestMapping(value = "/answer/{answerId}", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+* @Configuration
+@EnableScheduling
+* @Scheduled(cron = "0 30 1 * * ?")
 * return "redirect:/error";
 * HttpUtil.doHttpGet(query,elasticsearch_url_query1);
   CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -42,3 +45,23 @@
 * timestamp = new Timestamp(format.parse(dateStr).getTime());
 * Pattern pattern = Pattern.compile("<!\\[CDATA\\[");
         Matcher matcher = pattern.matcher(content);
+* public class DataResult<T> implements Serializable
+* MD5
+* @Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+	
+* @Configuration
+@ConditionalOnClass({ freemarker.template.Configuration.class, FreeMarkerConfigurationFactory.class })
+@AutoConfigureAfter(WebMvcAutoConfiguration.class)
+
+* @ControllerAdvice
+	@ExceptionHandler(InvalidDataAccessApiUsageException.class)
+	HttpHeaders httpHeaders = new HttpHeaders();
+	httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+* return new ResponseEntity("数据库连接异常", status);
+* URLEncoder.encode(((SimpleScalar) arguments.get(0)).getAsString(), "UTF-8");
+* public class AttachmentDirective implements TemplateDirectiveModel
+* public class CommonInterceptor implements HandlerInterceptor
+* java8 Optional
+@EnableConfigurationProperties(FreeMarkerProperties.class)
