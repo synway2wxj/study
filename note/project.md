@@ -65,3 +65,4 @@
 * public class CommonInterceptor implements HandlerInterceptor
 * java8 Optional
 @EnableConfigurationProperties(FreeMarkerProperties.class)
+* WebSecurityConfigurerAdapter
