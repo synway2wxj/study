@@ -116,3 +116,13 @@ Ctrl+Alt+Y 同步
 * Ctrl+Alt+F7 显示用法
 * Ctrl+F7 在文件中查找用法
 * Ctrl+Shift+F7 在文件中高亮显示用法
+
+【内存优化】
+* \IntelliJ IDEA 8\bin\idea.exe.vmoptions  
+* -----------------------------------------  
+* -Xms64m  
+* -Xmx256m  
+* -XX:MaxPermSize=92m  
+* -ea  
+* -server  
+* -Dsun.awt.keepWorkingSetOnMinimize=true
