@@ -66,3 +66,11 @@
 * java8 Optional
 @EnableConfigurationProperties(FreeMarkerProperties.class)
 * WebSecurityConfigurerAdapter
+* logging.level.root=WARN
+logging.level.org.apache=INFO
+logging.level.org.springframework=ERROR
+logging.level.org.springframework.security=ERROR
+logging.level.org.springframework.boot.context.web=ERROR
+logging.level.org.hibernate.SQL=DEBUG
+logging.file=${user.home}/.km/km.log
+* spring.freemarker.settings.auto_import=web/macro/common.ftl as cmn, web/macro/home.ftl as h
