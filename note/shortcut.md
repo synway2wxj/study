@@ -68,6 +68,8 @@ Ctrl+Alt+Y 同步
 * Ctrl+Backspace 按单词删除
 * Ctrl+”+/-” 当前方法展开、折叠
 * Ctrl+Shift+”+/-”，全部展开、折叠
+* CTRL+SHIFT+{选中括号中全内容
+* home
 
 
 【调试部分、编译】
