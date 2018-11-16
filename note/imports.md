@@ -31,3 +31,18 @@ import org.springframework.util.CollectionUtils;
 @EnableCaching
 @EnableAsync
 @EnableWs
+@Query(value = "update TMS_SYSTEM_ANNOUNCEMENTS t set t.data_status = 1 where t.id = ? and t.line_status = 1",
+nativeQuery = true)
+@Modifying
+@Transactional
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
+    @JoinColumn(name="JOB_ID")
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
+Modifier.isStatic(field.getModifiers())
