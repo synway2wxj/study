@@ -74,3 +74,23 @@ logging.level.org.springframework.boot.context.web=ERROR
 logging.level.org.hibernate.SQL=DEBUG
 logging.file=${user.home}/.km/km.log
 * spring.freemarker.settings.auto_import=web/macro/common.ftl as cmn, web/macro/home.ftl as h
+
+
+***ttt
+// 代理工厂
+JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
+// 设置代理地址
+jaxWsProxyFactoryBean.setAddress(address);
+
+// 创建动态客户端
+JaxWsDynamicClientFactory factory = JaxWsDynamicClientFactory.newInstance();
+//登录验证
+if (StringUtils.isNotEmpty(username)) {
+    Authenticator.setDefault(new MyAuthenticator(username, password));
+}
+Client client = factory.createClient(wsdlUrl);
+
+@EnableCaching
+@EnableAsync
+@EnableWs
+@Async
