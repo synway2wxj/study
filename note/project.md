@@ -94,3 +94,66 @@ Client client = factory.createClient(wsdlUrl);
 @EnableAsync
 @EnableWs
 @Async
+
+$("#jobEditWrap").validate
+
+Authenticator.setDefault(new MyAuthenticator(username, password));
+JaxWsDynamicClientFactory factory = JaxWsDynamicClientFactory.newInstance();
+QName service = new QName(namespace, servicename);
+QName HTTPPort = new QName(namespace, httpport);
+Client client = factory.createClient(wsdluri, service, HTTPPort);
+
+HTTPConduit http = (HTTPConduit) client.getConduit();
+HTTPClientPolicy httpClientPolicy = new HTTPClientPolicy();
+httpClientPolicy.setConnectionTimeout(10000); // 连接超时，5分钟，数据来源于SAP接口方
+httpClientPolicy.setAllowChunking(false); // 取消块编码
+httpClientPolicy.setReceiveTimeout(180000); // 响应超时
+http.setClient(httpClientPolicy);
+
+@Bean
+public Endpoint endpoint() {
+EndpointImpl endpoint = new EndpointImpl(bus, wsDpmService);
+endpoint.publish("/DpmService");
+return endpoint;
+}
+@WebService(name = "xxx", // 暴露服务名称
+        targetNamespace = "http://xxx/"// 命名空间,一般是接口的包名倒序
+)
+@WebMethod
+@WebResult(name = "String")
+@WebService(serviceName = "xxx", // 与接口中指定的name一致
+        targetNamespace = "http://xxx/", // 与接口中的命名空间一致,一般是接口的包名倒
+        endpointInterface = "xxx"// 接口地址
+)
+
+response.setContentType("image/png");
+            outputStream = response.getOutputStream();
+            outputStream.write(imgageBytes);
+	    byte[] imgageBytes = HttpClient.getBytes(wechatUrl + "?scene_str=" + jobId);
+	    
+CloseableHttpClient httpclient = HttpClients.createDefault();
+        try {
+            // 创建httpget.
+            HttpGet httpget = new HttpGet(url);
+            // 执行get请求.
+            CloseableHttpResponse response = httpclient.execute(httpget);
+            try {
+                // 获取响应实体
+                HttpEntity entity = response.getEntity();
+                // 打印响应状态
+                System.out.println(response.getStatusLine());
+                if (entity != null) {
+                    return EntityUtils.toByteArray(entity);
+                }
+		
+ // 创建默认的httpClient实例.
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        // 创建httppost
+        HttpPost httppost = new HttpPost(url);
+        UrlEncodedFormEntity uefEntity;
+        try {
+            uefEntity = new UrlEncodedFormEntity(params, "UTF-8");
+            httppost.setEntity(uefEntity);
+            System.out.println("executing request " + httppost.getURI());
+            CloseableHttpResponse response = httpclient.execute(httppost);
+@Query("select distinct(city) from xxx where province = ?1")
