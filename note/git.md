@@ -102,4 +102,8 @@ git whatchanged [file]
 * git stash 暂时将未提交的变化移除，稍后再移入
 git stash pop
 * git archive 生成一个可供发布的压缩包
-* remote->repository
+* remote->repository(fetch/clone,push)
+* remote->workspace(pull)
+* index->workspace(add)
+* index->repository(commit)
+* workspace->repository(checkout)
