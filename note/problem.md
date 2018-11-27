@@ -86,3 +86,11 @@ maxThreads：Tomcat能启动用来处理请求的最大线程数，如果请求�
 * NodeJS：合并请求，统一返回，降低负担，分批输出
 拆分大接口为独立小接口，缩短请求时间
 一台Node服务器，对多台Java服务器，合理分配服务器
+
+# 技术栈
+* 语言：java、shell、python、sql【Java编程思想/Effective Java/深入理解Java虚拟机/鸟哥的Linux私房菜/Python编程 从入门到实践/高性能MySQL/Hive编程指南】
+* 工具：eclipse、idea、maven、git
+* 框架：spring、orm、junit、testng、mockito
+* 数据库/中间件：mysql、oracle、redis、memcache、分布式对象存储系统(网易nos、阿里云oss)、消息队列(rabbitmq、kafka)、rpc(有钱rpc、阿里dubbo)、
+  java web(tomcat、jetty)、http反向代理服务器(nginx)
+* 其它：权限模型(RBAC/OAuth 2.0)、安全相关(SQL注入攻击/常用的限流策略/CSRF 攻击/XSS 攻击)、日志相关(log4j/logback/slf4j)、异常相关、restful(接口规范)、线上问题排查和工具、网络相关、多线程、设计原则和模式、分布式系统设计、java工程规范、java开发规范
