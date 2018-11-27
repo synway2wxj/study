@@ -1,0 +1,23 @@
+# jetty
+<plugin>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-maven-plugin</artifactId>
+    <version>9.4.5.v20170502</version>
+    <configuration>
+        <scanIntervalSeconds>10</scanIntervalSeconds>
+        <httpConnector>
+            <port>8080</port>
+        </httpConnector>
+        <webApp>
+            <contextPath>/${project.build.finalName}</contextPath>
+            <extraClasspath>
+                ../ccms-common/target/classes;
+                ../ccms-dao/target/classes;
+                ../ccms-model/target/classes;
+                ../ccms-service/ccms-inspection/target/classes;
+                ../ccms-service/ccms-permission/target/classes;
+                ../ccms-service/ccms-schedule/target/classes;
+            </extraClasspath>
+        </webApp>
+    </configuration>
+</plugin>
