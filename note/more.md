@@ -178,3 +178,31 @@ PaaS层可以被理解为在IaaS层提供的硬件服务之上，还额外搭建
 包括计算服务器、存储服务器、宽带资源等等。云计算将所有的计算资源集中起来，并由软件实现自动管理，无需人为参与。
 这使得应用提供者无需为繁琐的细节而烦恼，能够更加专注于自己的业务，有利于创新和降低成本
 * 云计算是一个系统、复杂的工程，各个层面相互配合，软硬结合，不断积累才能够构建出稳定、可靠、高速、安全的云计算基础设施
+
+---
+# node.js
+* Nodejs是一个高性能JavaScript脚本运行环境，内部基于Chrome V8脚本引擎。它相当于把在浏览器中执行JavaScript脚本的功能抽取出来，作为一个单独的程序，可在桌面端命令行等环境中使用
+* NPM是nodejs包管理器(nodejs package manager)，目前已为全球最大的开源脚本仓库
+* 文件操作/网络操作/进程管理/异步编程/
+* 构建工具：grunt、gulp、bower、browserify、webpack
+* 测试代码：Mocha、Jasmine、Chai、Tape、Karma、Selenium、phantomjs
+* webpack
+* angularjs
+* react
+* gulp
+* bower
+* typescript
+* vue
+* es5、es6
+* sass
+* less
+* VS Code
+
+---
+* npm init
+* npm install –g typescript
+* npm install –g typings
+* npm config set registry https://registry.npm.taobao.org
+* React是一个前端mvvm框架，它可以使前端开发更加组件化，更加有利于前端控件的维护和共用
+* JSX语法是一种语法糖，它允许直接将HTML结构代码写在javascript脚本中，将html代码和javascript代码混合写在一起
+* TypeSciprt是一门脚本语言，它算是Javascript的增强版，它扩展Javascript的类库，增加了面向对象特性。当然它最大的特点是兼容Javascript，它可以将自己的代码编译成Javascript代码
