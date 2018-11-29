@@ -283,7 +283,7 @@ router.get('/', function(req, res, next) {
 Server-side MVC架构	                             Client-side MV* 架构
 代码跑在服务器上	                                代码跑在浏览器上
 * 代码量越来越大，我们需要校验的表单也会越来越多;服务端任需要进行校验来达到数据的可靠性;;
-![前后端分离](https://upload-images.jianshu.io/upload_images/3808719-f00519f507aadd8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/859/format/webp "前后端分离")
+![前后端分离](https://upload-images.jianshu.io/upload_images/3808719-f00519f507aadd8f.png "前后端分离")
 * java：服务层、提供数据接口、维持数据稳定、封装业务逻辑
 node.js：转发数据串接服务，路由设计，控制逻辑，渲染页面，体验优化
 html+js+css：dom操作、公用模板、路由
