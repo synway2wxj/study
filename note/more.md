@@ -305,3 +305,6 @@ npm install cors --save
 Node层还能轻松实现原来vmcommon,tms（引用淘宝内容管理系统）等需求
 * Node层要使用什么框架由开发者自己决定。不过推荐使用express+xTemplate的组合，xTemplate能做到前后端公用
 * 可以使用Node轻松实现我们想要的输出方式:JSON/JSONP/RESTful/HTML/BigPipe/Comet/Socket/同步、异步，想怎么整就怎么整，完全根据你的场景决定
+* 以前服务端为什么能识别用户呢？对，是session，每个session都存在服务端，浏览器每次请求都带着sessionId（就是一个字符串），于是服务器根据这个sessionId就知道是哪个用户了；；那么问题来了，用户很多时，服务器压力很大，如果采用分布式存储session，又可能会出现不同步问题
+* 在用户第一次登录成功后，服务端返回一个token回来，这个token是根据userId进行加密的，密钥只有服务器知道，然后浏览器每次请求都把这个token放在Header里请求，这样服务器只需进行简单的解密就知道是哪个用户了。这样服务器就能专心处理业务，用户多了就加机器
+* token = Jwts.builder().setSubject(name).claim("roles", "user").setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "base64EncodedSecretKey").compact();
