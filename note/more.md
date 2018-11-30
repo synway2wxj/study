@@ -308,3 +308,18 @@ Node层还能轻松实现原来vmcommon,tms（引用淘宝内容管理系统）�
 * 以前服务端为什么能识别用户呢？对，是session，每个session都存在服务端，浏览器每次请求都带着sessionId（就是一个字符串），于是服务器根据这个sessionId就知道是哪个用户了；；那么问题来了，用户很多时，服务器压力很大，如果采用分布式存储session，又可能会出现不同步问题
 * 在用户第一次登录成功后，服务端返回一个token回来，这个token是根据userId进行加密的，密钥只有服务器知道，然后浏览器每次请求都把这个token放在Header里请求，这样服务器只需进行简单的解密就知道是哪个用户了。这样服务器就能专心处理业务，用户多了就加机器
 * token = Jwts.builder().setSubject(name).claim("roles", "user").setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "base64EncodedSecretKey").compact();
+* 在Node中我们可以十分方便利用异步和并行来提升我们的业务速度。但是，如果并发量过大，我们的服务器却可能吃不消，我们需要限制并发量。尽管http模块自身有http.Agent这样的玩意，用于控制socket的数量，但是通常我们的异步API早就封装好了
+* 前端开发不需要部署后端语言的环境，后端开发也不需要前端写好的任何程序。后端只管暴露各种 API 接口供给前端进行数据的增、删、改、查，不负责生成 HTML 页面
+* 在微服务开发框架下，前端通常被设计成一个独立的微服务。前后端仅仅通过接口来协作，前端服务最终生成一个独立的 Docker 镜像来部署
+* 利用 Swagger 创建了一个基于 Node.js 的 Mock Server 作为前后端分离开发的工具。在后端服务没有完全实现的情况下, 使用 Mock Server 作为前端开发的支持工具, 来实现前后端同时开发的目的
+* Swagger Editor。Swagger 可以选择使用 JSON 或者 YAML 的语言格式
+* Swagger API 文档遵循 OpenAPI 文档定义标准。文档内容使用 key:value 的格式
+* 前后端分离的模式下, 前后端开发人员最先做的事情是定义前后端通讯的 API 接口文档
+* 使用 swagger-express-mw lib 包来创建基于 Node.js 的 Mock Server，swagger-express-mw 提共一个前端基础框架，这个框架完全可以作为前端代码的开发框架，将 controller 部分实现成真正项目的代码逻辑。因为我们的项目是重构，前端代码需在原有代码基础上做开发，重点重构后端代码。所以只用其作为 Mock Server 来测试前后端的通信
+* npm install -g swagger
+* swagger -V
+* swagger project create YourProjectName
+* swagger project start
+* 随着不同终端(Pad/Mobile/PC)的兴起，对开发人员的要求越来越高，纯浏览器端的响应式已经不能满足用户体验的高要求，我们往往需要针对不同的终端开发定制的版本
+* 淘宝的Web基本上都是基于MVC框架webx，架构决定了前端只能依赖后端；；使用Comet、Bigpipe等技术方案来优化性能
+* 淘宝宝贝详情页静态化之后，还是有不少需要实时获取的信息，比如物流、促销等等，因为这些信息在不同业务系统中，所以需要前端发送5，6个异步请求来回填这些内容。有了NodeJS之后，前端可以在NodeJS中去代理这5个异步请求，还能很容易的做Bigpipe,这块的优化能让整个渲染效率提升很多。可能在PC上你觉得发5,6个异步请求也没什么，但是在无线端，在客户手机上建立一个HTTP请求开销很大，有了这个优化，性能一下提升好几倍
