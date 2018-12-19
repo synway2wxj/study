@@ -49,3 +49,45 @@
 * 堆：new操作符的对象，在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理
 * 静态域：static定义的静态成员变量
 * 常量池：存放常量
+
+### 命令
+* \#!/bin/bash
+
+PROJECTNAME=RangerALdapApi
+
+pid=`ps -ef |grep $PROJECTNAME |grep -v "grep" |awk '{print $2}'`
+
+if [ $pid ]; then
+
+​    echo "$PROJECTNAME  is  running  and pid=$pid"
+
+else
+
+   echo "Start success to start $PROJECTNAME ...."
+
+   nohup java -jar RangerALdapApi-0.0.1-SNAPSHOT.jar  >> catalina.out  2>&1 &
+
+fi
+* \#!/bin/bash
+
+PROJECTNAME=RangerALdapApi
+
+pid=`ps -ef |grep $PROJECTNAME |grep -v "grep" |awk '{print $2}' `
+
+if [ $pid ]; then
+
+​    echo "$PROJECTNAME is  running  and pid=$pid"
+
+​    kill -9 $pid
+
+​    if [[ $? -eq 0 ]];then
+
+​       echo "sucess to stop $PROJECTNAME "
+
+​    else
+
+​       echo "fail to stop $PROJECTNAME "
+
+​     fi
+
+fi
