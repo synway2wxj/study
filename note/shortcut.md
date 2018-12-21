@@ -128,3 +128,54 @@ Ctrl+Alt+Y 同步
 * -ea  
 * -server  
 * -Dsun.awt.keepWorkingSetOnMinimize=true
+
+eclipse
+---
+* 查找上一个 Ctrl+Shift+K
+* 查找下一个 Ctrl+K
+* Alt+Shift+↓复制一行
+* 内容辅助 Alt+/
+* 全局 放大 Ctrl+=
+* 全局 缩小 Ctrl+-
+* 代码格式化 Ctrl+Shift+f 
+* 关闭单个窗口 Ctrl+w
+* 整理导入 Ctrl+Shift+o
+* 注释代码、单行注释 Ctrl+/
+* 查找工程中的类 Ctrl+shift+T 
+* 上滚行 Ctrl+↑
+* 下滚行 Ctrl+↓    J
+* 切换窗口 Ctrl+f6
+* 断点单步运行 F6
+* 断点进入方法体执行 F5
+* 运行上次程序 F11
+* 调试上次程序 Ctrl + F11
+* 单步返回 F7
+* 继续 F8
+* 删除行 Ctrl+D 
+* 运行至行 Ctrl+R
+* 添加/去除断点 Ctrl+Shift+B
+* 上一个编辑器 Ctrl+Shift+F6
+* 上一个视图 Ctrl+Shift+F7
+* 上一个透视图 Ctrl+Shift+F8
+* 下一个编辑器 Ctrl+F6
+* 打开资源 Ctrl+Shift+R
+* 后退历史记录 Alt+← 
+* 显示大纲 Ctrl+O
+* 转至上一个编辑位置 Ctrl+Q
+* 转至行 Ctrl+L
+* 转至匹配的括号 Ctrl+Shift+P
+* 出现在文件中 Ctrl+Shift+U 
+* 工作区中的声明 Ctrl+G
+* 工作区中的引用 Ctrl+Shift+G
+* 新建 Ctrl+N
+* 属性 Alt+Enter
+* 重命名 Alt+Shift+R
+* ctrl+e：快速转换编辑器
+* alt+shift+l 以及alt+shift+m：提取本地变量及方法
+* Alt+方向键 将当前行的内容往上或下移动
+* Ctrl+m是编辑器窗口最大化的快捷键
+* Ctrl+Shift+X 把当前选中的文本全部变味小写
+* Ctrl+Shift+Y 把当前选中的文本全部变为小写
+* 减小缩进              Ctrl+Shift+I
+* 增大缩进              Ctrl+I
+* try catch Alt+Shift+z
