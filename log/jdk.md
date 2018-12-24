@@ -52,3 +52,4 @@ XX:+UseAdaptiveSizePolicy：设置此选项后，并行收集器会自动选择�
 -XX:MinMetaspaceFreeRatio，在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集
 -XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集
 ![avatar](https://images2015.cnblogs.com/blog/978388/201707/978388-20170712150157353-1144089802.png)
+* 对于程序员来说，分配对象使用new关键字；释放对象时，只要将对象所有引用赋值为null，让程序不能够再访问到这个对象
