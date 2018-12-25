@@ -73,6 +73,7 @@ cp -P  /var/tmp/a.txt  ./temp/复制时保留文件的目录结构
 * http://redis.io/download  
 * tar zxvf redis.tar.gz    cd redis    make(编译)    cd src  make install   ./redis-server   pkill redis-server  redis-cli 
 redis-cli shutdown  netstat -tunpl|grep 6379
+* 编译完成之后，可以看到解压文件redis中会有对应的src、conf等文件夹；；编译成功后，进入src文件夹，执行make install进行Redis安装；；首先为了方便管理，将Redis文件中的conf配置文件和常用命令移动到统一文件中；；mkdir -p /usr/local/redis/bin；；mkdir -p /usr/local/redis/ect
 * 当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定pidfile /var/run/redis.pid
 * 当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能timeout 300
 * 指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose;loglevel verbose
