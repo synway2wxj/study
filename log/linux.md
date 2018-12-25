@@ -67,3 +67,38 @@ Ctrl＋b；向文件首翻一屏
 nz：将第n行滚至屏幕顶部，不指定n时将当前行滚至屏幕顶部
 *  cp -R file1 file2 file3 dir1 dir2
 cp -P  /var/tmp/a.txt  ./temp/复制时保留文件的目录结构
+
+# redis
+* string、list、set、zset和hash
+* http://redis.io/download  
+* tar zxvf redis.tar.gz    cd redis    make(编译)    cd src  make install   ./redis-server   pkill redis-server  redis-cli 
+redis-cli shutdown  netstat -tunpl|grep 6379
+* 当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定pidfile /var/run/redis.pid
+* 当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能timeout 300
+* 指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose;loglevel verbose
+* 启动redis服务需要从后台启动，并且指定启动配置文件，将daemonize属性改为yes；redis-server /usr/local/redis/etc/redis.conf
+* 设置当本机为slav服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步slaveof <masterip> <masterport>
+* 当master服务设置了密码保护时，slav服务连接master的密码masterauth <master-password>
+* 设置Redis连接密码，如果配置了连接密码，客户端在连接Redis时需要通过AUTH <password>命令提供密码，默认关闭requirepass foobared
+* 指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为 redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no;appendonly no
+* 指定更新日志条件，共有3个可选值： 
+    no：表示等操作系统进行数据缓存同步到磁盘（快） 
+    always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全） 
+    everysec：表示每秒同步一次（折衷，默认值）
+appendfsync everysec
+* 指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件
+  include /path/to/local.conf
+# rocketmq
+# oracle
+# nginx
+# rpm
+# aptget
+# curl
+# 重启加载
+# 共享
+# 定时任务
+# kafaka
+# memcache
+# docker
+# 端口
+# mogodb
