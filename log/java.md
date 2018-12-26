@@ -162,7 +162,7 @@ spring.servlet.multipart.max-request-size=10Mb
         return factory.createMultipartConfig();
     }
 
- 
+---
 # 乱码
 * 当URL地址里包含非西欧字符的字符串时,系统会将这些非西欧转换成如图所示的特殊字符串,那么编码过程中可能涉及将普通字符串和这种特殊字符串的相关转换,这就是需要使用URLDecoder和URLEncoder类
 * URLDecoder和URLEncoder它的作用主要是用于普通字符串和application/x-www-form-rulencoded MIME字符串之间的转换
@@ -190,3 +190,133 @@ GBK（扩展GB2312）
 spring.http.encoding.charset=UTF-8
 spring.http.encoding.enabled=true
 server.tomcat.uri-encoding=UTF-8
+
+---
+# 国际化
+* messages.properties
+messages_en_US.properties
+messages_zh_CN.properties
+* @Autowired
+    private MessageSource messageSource;
+    @GetMapping("/")
+    public String index(Model model) {
+        Locale locale = LocaleContextHolder.getLocale();
+        model.addAttribute("world", messageSource.getMessage("world", null, locale));
+        return "index";
+    }
+public class LocaleConfig extends WebMvcConfigurerAdapter {
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        // 默认语言
+        slr.setDefaultLocale(Locale.US);
+        return slr;
+    }
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        // 参数名
+        lci.setParamName("lang");
+        return lci;
+    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+}
+* SpringBoot默认国际化文件为：classpath:message.properties，如果放在其它文件夹中，则需要在application.properties配置属性spring.messages.basename
+表示放在classpath的i18n文件夹，文件前缀为mess  
+spring.messages.basename=i18n.mess
+* 在Spring boot的配置文件application.properties中添加配置项：
+spring.messages.basename=i18n/messages/messages
+注意：最后一个messages一定不能少，最后一个messages表明国际化文件的前缀
+* 在Java代码中引用国际化文件，首先注入MessageSource，然后通过LocaleContextHolder.getLocale()来获取当前Locale，最后通messageSource.getMessage("hello.world", null,locale)来去对应的国际化资源文件中取消息
+* ##去除thymeleaf的html严格校验
+spring.thymeleaf.mode=LEGACYHTML5
+#设定thymeleaf文件路径 
+spring.freemarker.template-loader-path=classpath:/templates
+
+---
+# websocket
+* spring-boot-starter-websocket
+@ServerEndpoint(value = "/websocket")
+public ServerEndpointExporter serverEndpointExporter()
+WebSocket协议是基于TCP的一种新的网络协议。它实现了浏览器与服务器全双工(full-duplex)通信——允许服务器主动发送信息给客户端。
+HTTP 协议有一个缺陷：通信只能由客户端发起，HTTP 协议做不到服务器主动向客户端推送信息
+* /**
+ * 开启WebSocket支持
+ * @author zhengkai
+ */
+@Configuration  
+public class WebSocketConfig {  
+    @Bean  
+    public ServerEndpointExporter serverEndpointExporter() {  
+        return new ServerEndpointExporter();  
+    }   
+}
+* WebSocketServer其实就相当于一个ws协议的Controller
+直接@ServerEndpoint("/websocket")@Component启用即可，然后在里面实现@OnOpen,@onClose,@onMessage
+
+---
+# 并发包
+* CopyOnWriteArraySet
+* ReentrantLock： 可重入（lock.lock();lock.lock();）；；可中断（普通的lock.lock()是不能响应中断的，lock.lockInterruptibly()能够响应中断）；；可限时（lock.tryLock(long timeout, TimeUnit unit)）；；公平锁的意思就是，这个锁能保证线程是先来的先得到锁。虽然公平锁不会产生饥饿现象，但是公平锁的性能会比非公平锁差很多
+Condition与ReentrantLock的关系就类似于synchronized与Object.wait()/signal()   condition.await()/signal只能在得到锁以后使用
+对于Semaphore来说，它允许多个线程同时进入临界区。可以认为它是一个共享锁，但是共享的额度是有限制的，额度用完了，其他没有拿到额度的线程还是要阻塞在临界区外。当额度为1时，就相等于lock  semaphore.acquire();
+ReadWriteLock是区分功能的锁。读和写是两种不同的功能，读-读不互斥，读-写互斥，写-写互斥。这样的设计是并发量提高了，又保证了数据安全
+* 在火箭发射前，为了保证万无一失，往往还要进行各项设备、仪器的检查。 只有等所有检查完毕后，引擎才能点火。这种场景就非常适合使用CountDownLatch
+static final CountDownLatch end = new CountDownLatch(10);
+end.countDown();
+end.await();
+* 和CountDownLatch相似，也是等待某些线程都做完以后再执行。与CountDownLatch区别在于这个计数器可以反复使用
+* 当四个线程都到达barrier状态后，会从四个线程中选择一个线程去执行Runnable
+* 　1）CountDownLatch和CyclicBarrier都能够实现线程之间的等待，只不过它们侧重点不同：
+　　　　CountDownLatch一般用于某个线程A等待若干个其他线程执行完任务之后，它才执行；
+　　　　而CyclicBarrier一般用于一组线程互相等待至某个状态，然后这一组线程再同时执行；
+　　　　另外，CountDownLatch是不能够重用的，而CyclicBarrier是可以重用的。
+　　2）Semaphore其实和锁有点类似，它一般用于控制对某组资源的访问权限
+* LockSupport的思想呢，和 Semaphore有点相似，内部有一个许可，park的时候拿掉这个许可，unpark的时候申请这个许可。所以如果unpark在park之前，是不会发生线程冻结的
+* public static Map m=Collections.synchronizedMap(new HashMap());
+同理对于List，Set也提供了相似方法。但是这种方式只适合于并发量比较小的情况;;在 ConcurrentHashMap内部有一个Segment段，它将大的HashMap切分成若干个段（小的HashMap），然后让数据在每一段上Hash，这样多个线程在不同段上的Hash操作一定是线程安全的，所以只需要同步同一个段上的线程就可以了，这样实现了锁的分离，大大增加了并发量
+* BlockingQueue不是一个高性能的容器。但是它是一个非常好的共享数据的容器。是典型的生产者和消费者的实现
+* StampedLock是并发包里面jdk8版本新增的一个锁: 写锁writeLock 悲观读锁readLock 乐观读锁tryOptimisticRead
+
+---
+# webservice
+* <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>3.1.6</version>
+ <groupId>org.apache.cxf</groupId>
+              <artifactId>cxf-rt-transports-http</artifactId>
+	      <version>3.1.6</version>
+@WebService(targetNamespace="http://service.demo.paybay.cn/",endpointInterface = "cn.paybay.demo.service.UserService")
+* <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web-services</artifactId>
+      <version>1.5.2.RELEASE</version>
+<groupId>wsdl4j</groupId>
+      <artifactId>wsdl4j</artifactId>
+      <version>1.6.3</version>
+@EnableWs
+@Configuration
+public class WebServiceConfig extends WsConfigurerAdapter {
+    @Bean
+    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
+        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+        servlet.setApplicationContext(applicationContext);
+        servlet.setTransformWsdlLocations(true);
+        return new ServletRegistrationBean(servlet, "/ws/*");
+    }
+    @Bean(name = "countries")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("CountriesPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://www.yourcompany.com/webservice");
+        wsdl11Definition.setSchema(countriesSchema);
+        return wsdl11Definition;
+    }
+    @Bean
+    public XsdSchema countriesSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("countries.xsd"));
+    }
+}
