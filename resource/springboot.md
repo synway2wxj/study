@@ -36,6 +36,9 @@ logging.level.org.springframework.web=DEBUG
 * 配置文件中${random} 可以用来生成各种不同类型的随机值:${random.value} ${random.int} ${random.long} ${random.uuid} ${random.int(10)}
 ${random.int[1024,2048]}
 
+
+
+
 ---
 * [配置页](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html "配置页")
 * logging.config
