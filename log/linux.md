@@ -226,3 +226,29 @@ whereis nginx
 # 端口
 # mogodb
 # linux自启动服务
+# more
+* more -4 test.log 将日志内容设置为每屏显示4行
+* more +/liu test.log 从文件中查找第一个出现"liu"字符串的行，并从该处前两行开始显示输出
+* cat test.log | more -5
+* cat ./logs/catalina.out |grep "ERROR"| more -4
+* +n      从笫n行开始显示 
+* -n定义屏幕大小为n行
+* +/pattern 在每个档案显示前搜寻该字串（pattern），然后从该字串前两行之后开始显示  
+* -c       从顶部清屏，然后显示
+* -p       通过清除窗口而不是滚屏来对文件进行换页，与-c选项相似
+* =       输出当前行的行号
+# less
+* ps -ef|less -N ps查看进程信息并通过less分页显示同时显示行号
+* less test2.log test.log 浏览多个文件
+* G - 移动到最后一行
+* g - 移动到第一行
+* q / ZZ - 退出 less 命令
+* &pattern - 仅显示匹配模式的行，而不是整个文件
+* /关键字 ，回车即可。此为从文档当前位置向下查找关键字，按n键查找关键字下一个位置
+* ？关键字，回车即可。此为从文档挡圈位置向上查找关键字，按n键向上查找关键字
+* ctrl + D - 向前移动半屏
+* ctrl + U - 向后移动半屏
+* -i  忽略搜索时的大小写
+* -m  显示类似more命令的百分比
+* -N  显示每行的行号
+* -o <文件名> 将less 输出的内容在指定文件中保存起来
