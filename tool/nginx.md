@@ -1,4 +1,11 @@
 # nginx
+* https://www.cnblogs.com/sybblogs/p/6085314.html
+* https://blog.csdn.net/jiede1/article/details/81094916
+* http://rpm.pbone.net/
+* https://blog.csdn.net/mahoking/article/details/80058052
+* https://www.cnblogs.com/wyd168/p/6636529.html
+
+
 * http://nginx.org/en/download.html
 * 启动(windows)：
 1. 双击nginx.exe
